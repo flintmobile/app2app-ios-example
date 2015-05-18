@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *customerNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *customerPhoneTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UISwitch *skipSuccessStatusSwitch;
 
 @end
 
@@ -164,8 +163,8 @@
     
     NSString *urlString =
         [NSString stringWithFormat:
-         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@&skipSuccessStatus=%@",
-         self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text, @(self.skipSuccessStatusSwitch.on)];
+         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
+         self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text];
     
     NSURL *aURL = [NSURL URLWithString:
          [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
