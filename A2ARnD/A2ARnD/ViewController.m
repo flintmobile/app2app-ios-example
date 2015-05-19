@@ -160,6 +160,7 @@
   
     if (self.amountTextField.text.length < 1 && (self.durationTextField.text.length < 1 || self.hourlyRateTextField.text.length < 1)) {
       [self showError:@"Subtotal is require or combination of duration and hourly rate is required"];
+      return;
     }
   
     NSNumberFormatter *numberFormater = [[NSNumberFormatter alloc] init];
