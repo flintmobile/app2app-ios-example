@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *customerNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *customerPhoneTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *durationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *hourlyRateTextField;
 
 @end
 
@@ -146,11 +148,6 @@
         return;
     }
     
-    if (self.amountTextField.text.length < 1) {
-        [self showError:@"The Subtotal is required"];
-        return;
-    }
-    
     if (self.descTextField.text.length < 1) {
         [self showError:@"The Description is required"];
         return;
@@ -160,11 +157,13 @@
         [self showError:@"The Return URL Scheme is required"];
         return;
     }
-    
+  
+    NSNumberFormatter *numberFormater = [[NSNumberFormatter alloc] init];
+    NSTimeInterval duration = [[numberFormater numberFromString:self.durationTextField.text] floatValue] * 3600;
     NSString *urlString =
         [NSString stringWithFormat:
-         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
-         self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text];
+         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&duration=%@&hourlyRate=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
+         self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, @(duration), self.hourlyRateTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text];
     
     NSURL *aURL = [NSURL URLWithString:
          [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
