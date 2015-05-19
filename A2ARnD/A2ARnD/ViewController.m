@@ -158,6 +158,10 @@
         return;
     }
   
+    if (self.amountTextField.text.length < 1 && (self.durationTextField.text.length < 1 || self.hourlyRateTextField.text.length < 1)) {
+      [self showError:@"Subtotal is require or combination of duration and hourly rate is required"];
+    }
+  
     NSNumberFormatter *numberFormater = [[NSNumberFormatter alloc] init];
     NSTimeInterval duration = [[numberFormater numberFromString:self.durationTextField.text] floatValue] * 3600;
     NSString *urlString =
