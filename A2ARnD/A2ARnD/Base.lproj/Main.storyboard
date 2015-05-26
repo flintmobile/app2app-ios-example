@@ -13,8 +13,26 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cYJ-Rl-LGj">
+                                <rect key="frame" x="130" y="567" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Response">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Iwr-ol-CJY" kind="push" identifier="ToResponse" id="qC0-fE-w1w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K9e-ge-MPt">
+                                <rect key="frame" x="25" y="542" width="325" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Accept Payment"/>
+                                <connections>
+                                    <action selector="acceptPaymentButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lJP-jp-BN4"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" id="Bgs-e7-uC3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="534"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description *" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jEn-J2-y9y">
@@ -170,6 +188,13 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Parameters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VV-7Y-DcU">
+                                        <rect key="frame" x="8" y="607" width="325" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate **" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U5c-eC-IRa">
                                         <rect key="frame" x="8" y="186" width="325" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -177,27 +202,18 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="transactionID=12345&amp;active=1" borderStyle="roundedRect" minimumFontSize="17" id="HOe-og-4aS">
+                                        <rect key="frame" x="8" y="628" width="285" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="ibH-T3-BIv"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.47882070259999998" green="0.49870824320000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cYJ-Rl-LGj">
-                                <rect key="frame" x="130" y="568" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Response">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Iwr-ol-CJY" kind="push" identifier="ToResponse" id="qC0-fE-w1w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K9e-ge-MPt">
-                                <rect key="frame" x="25" y="542" width="325" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Accept Payment"/>
-                                <connections>
-                                    <action selector="acceptPaymentButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lJP-jp-BN4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -214,15 +230,16 @@
                         <outlet property="durationTextField" destination="1dc-wR-Unw" id="tAh-US-7Vq"/>
                         <outlet property="emailTextField" destination="3l8-xs-zdc" id="7iw-xH-1Nl"/>
                         <outlet property="hourlyRateTextField" destination="dlO-N6-LW1" id="CkL-5h-2u7"/>
+                        <outlet property="parametersTextField" destination="HOe-og-4aS" id="53u-5T-bZj"/>
                         <outlet property="partnerIdTextField" destination="fjf-7G-5gX" id="6lv-Pb-Bfj"/>
-                        <outlet property="scrollView" destination="Bgs-e7-uC3" id="19K-LW-F2O"/>
+                        <outlet property="scrollView" destination="Bgs-e7-uC3" id="w3a-xC-zsd"/>
                         <outlet property="taxTextField" destination="pzi-98-msr" id="PBf-Hi-waU"/>
                         <outlet property="urlTextField" destination="g4F-jG-JSJ" id="xf0-39-f9X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-233.5" y="673.5"/>
+            <point key="canvasLocation" x="-233.5" y="671.5"/>
         </scene>
         <!--Response View Controller-->
         <scene sceneID="OBN-5l-VTu">

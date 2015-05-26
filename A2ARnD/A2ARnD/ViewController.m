@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *durationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *hourlyRateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *parametersTextField;
 
 @end
 
@@ -38,14 +39,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    if (self.scrollView.frame.size.height < 600) {
-        [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, 600)];
-    } else {
-        [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
-    }
-    
-    scrollviewFullHeight = self.scrollView.frame.size.height;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appDidOpenUrl:)
@@ -63,10 +56,17 @@
 
 }
 
+- (void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  
+  [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.bounds), 700)];
+  scrollviewFullHeight = self.scrollView.frame.size.height;
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -169,7 +169,11 @@
         [NSString stringWithFormat:
          @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&duration=%@&hourlyRate=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
          self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, @(duration), self.hourlyRateTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text];
-    
+  
+    if (self.parametersTextField.text.length > 0) {
+      urlString = [NSString stringWithFormat:@"%@&%@",urlString, self.parametersTextField.text];
+    }
+  
     NSURL *aURL = [NSURL URLWithString:
          [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
