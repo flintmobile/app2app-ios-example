@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *durationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *hourlyRateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *parametersTextField;
+@property (nonatomic) CGRect scrollviewFrame;
 
 @end
 
@@ -34,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    self.scrollviewFrame = self.scrollView.frame;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,28 +88,30 @@
     if ([[segue identifier] isEqualToString:@"ToResponse"])
     {
         ResponseViewController *rvc = [segue destinationViewController];
-        rvc.view;  // cause the view to load
+        UIView *theView = rvc.view;  // cause the view to load
         rvc.responseTextView.text = self.resultText;
     }
 }
 
 - (void)uiKeyboardWillShowNotification:(NSNotification *)theNotification
 {
+    self.scrollviewFrame = self.scrollView.frame;
+
     NSDictionary *userInfo = theNotification.userInfo;
     
     NSValue *keyboardRectValue = userInfo[UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [keyboardRectValue CGRectValue];
     
     CGRect newFrame = self.scrollView.frame;
-    newFrame.size.height = newFrame.size.height - keyboardRect.size.height;
+    newFrame.size.height = newFrame.size.height - (keyboardRect.size.height - (self.view.frame.size.height - self.scrollView.frame.size.height));
     self.scrollView.frame = newFrame;
 }
 
 - (void)uiKeyboardWillHideNotification:(NSNotification *)theNotification
 {
-    CGRect newFrame = self.scrollView.frame;
-    newFrame.size.height = scrollviewFullHeight;
-    self.scrollView.frame = newFrame;
+//    CGRect newFrame = self.scrollView.frame;
+//    newFrame.size.height = scrollviewFullHeight;
+    self.scrollView.frame = self.scrollviewFrame;
     
 }
 
