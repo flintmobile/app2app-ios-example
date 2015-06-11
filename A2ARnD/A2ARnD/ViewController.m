@@ -172,7 +172,7 @@
     NSTimeInterval duration = [[numberFormater numberFromString:self.durationTextField.text] floatValue] * 3600;
     NSString *urlString =
         [NSString stringWithFormat:
-         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&duration=%@&hourlyRate=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
+         @"x-flint-mobile-a2a://payment?pid=%@&desc=%@&subtotal=%@&duration=%@&rate=%@&tax=%@&email=%@&url=%@&name=%@&phone=%@",
          self.partnerIdTextField.text, self.descTextField.text, self.amountTextField.text, @(duration), self.hourlyRateTextField.text, self.taxTextField.text, self.emailTextField.text, self.urlTextField.text, self.customerNameTextField.text, self.customerPhoneTextField.text];
   
     if (self.parametersTextField.text.length > 0) {
