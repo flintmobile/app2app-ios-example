@@ -153,11 +153,6 @@
         return;
     }
     
-    if (self.descTextField.text.length < 1) {
-        [self showError:@"The Description is required"];
-        return;
-    }
-    
     if (self.urlTextField.text.length < 1) {
         [self showError:@"The Return URL Scheme is required"];
         return;
