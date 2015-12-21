@@ -176,7 +176,13 @@
   
     NSURL *aURL = [NSURL URLWithString:
          [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
     [[UIApplication sharedApplication] openURL:aURL];
+  } else {
+    // send them to the app store
+    aURL = [NSURL URLWithString:[@"https://itunes.apple.com/us/app/flint-mobile/id521597965" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] openURL:aURL];
+  }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

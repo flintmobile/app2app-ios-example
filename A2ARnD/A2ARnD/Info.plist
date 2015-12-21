@@ -45,5 +45,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>x-flint-mobile-a2a</string>
+	</array>
 </dict>
 </plist>
